@@ -1,14 +1,9 @@
-import os ## make pip3 install guizero in the cmd
+ ## make pip3 install guizero in the cmd
 from guizero import App, Text, TextBox, PushButton, Slider, Picture, Combo 
 import os
 
 
 kp = 2
-
-def affiche() :
-    global kp
-    welcome_message = Text(app, text=str(round(kp,3)) , grid=[0,1,4,1])
-    print( round(kp,3))
 
 def buttonPDix   ():
     global kp
@@ -54,27 +49,56 @@ def buttonMmille ():
 
 
 
+def affiche() :
+    global kp
+
+    dixaine  = int(kp/10)   % 10
+    unite    = int(kp/1)    % 10
+    dixieme  = int(kp*10)   % 10
+    centieme = int(kp*100)  % 10
+    milieme  = int(kp*1000) % 10
+ 
+    KPT       = Text(app,text = "Kp distance = ", grid = [0,1] ,size=40, font="Times New Roman", color="blue")
+    dixaineT  = Text(app,text =  str(dixaine)   , grid = [1,1] ,size=40, font="Times New Roman", color="blue")
+    uniteT    = Text(app,text =  str(unite)     , grid = [2,1] ,size=40, font="Times New Roman", color="blue")
+    virgule   = Text(app,text = "."             , grid = [3,1] ,size=40, font="Times New Roman", color="blue")
+    dixiemeT  = Text(app,text =  str(dixieme)   , grid = [4,1] ,size=40, font="Times New Roman", color="blue")
+    centiemeT = Text(app,text =  str(centieme)  , grid = [5,1] ,size=40, font="Times New Roman", color="blue")
+    miliemeT  = Text(app,text =  str(milieme)   , grid = [6,1] ,size=40, font="Times New Roman", color="blue")
+
+#    welcome_message = Text(app, text=str(round(kp,3)) , grid=[0,1,4,1])
+    print( round(kp,3))
+
+
+
 
 
 print('Start')
-app = App(layout="grid")#, layout="grid"
+app = App(layout="grid", width = 1000, height = 500)#, layout="grid"
 
 #film_choice = Combo(app, options=["Star Wars", "Frozen", "Lion King"],grid=[100,100],align ="left")
 #update_text = PushButton(app, grid=[10,0] ,text="Say my name")
 
+affiche()
+
+espace        = Text(app,text = " " , grid = [0,0])
+buttonPDix    = PushButton(app,command = buttonPDix  ,image = "FlecheHaut.png"  , grid=[1,0])
+buttonPUni    = PushButton(app,command = buttonPUni  ,image = "FlecheHaut.png"  , grid=[2,0])
+espace        = Text(app,text = " " , grid = [3,0])
+buttonPdix    = PushButton(app,command = buttonPdix  ,image = "FlecheHaut.png"  , grid=[4,0])
+buttonPcent   = PushButton(app,command = buttonPcent ,image = "FlecheHaut.png"  , grid=[5,0])
+buttonPmille  = PushButton(app,command = buttonPmille,image = "FlecheHaut.png"  , grid=[6,0])
 
 
-buttonPDix    = PushButton(app,command = buttonPDix  , text="PDix"  , grid=[0,0])
-buttonPUni    = PushButton(app,command = buttonPUni  , text="PUni"  , grid=[1,0])
-buttonPdix    = PushButton(app,command = buttonPdix  , text="Pdix"  , grid=[2,0])
-buttonPcent   = PushButton(app,command = buttonPcent , text="Pcent" , grid=[3,0])
-buttonPmille  = PushButton(app,command = buttonPmille, text="Pmille", grid=[4,0])
+espace        = Text(app,text = " " , grid = [0,2])
+buttonMDix    = PushButton(app,command = buttonMDix  , image = "FlecheBas.png" , grid=[1,2])
+buttonMUni    = PushButton(app,command = buttonMUni  , image = "FlecheBas.png" , grid=[2,2])
+espace        = Text(app,text = " " , grid = [3,2])
+buttonMdix    = PushButton(app,command = buttonMdix  , image = "FlecheBas.png" , grid=[4,2])
+buttonMcent   = PushButton(app,command = buttonMcent , image = "FlecheBas.png" , grid=[5,2])
+buttonMmille  = PushButton(app,command = buttonMmille, image = "FlecheBas.png" , grid=[6,2])
 
-buttonMDix    = PushButton(app,command = buttonMDix  , text="MDix"  , grid=[0,2])
-buttonMUni    = PushButton(app,command = buttonMUni  , text="MUni"  , grid=[1,2])
-buttonMdix    = PushButton(app,command = buttonMdix  , text="Mdix"  , grid=[2,2])
-buttonMcent   = PushButton(app,command = buttonMcent , text="Mcent" , grid=[3,2])
-buttonMmille  = PushButton(app,command = buttonMmille, text="Mmille", grid=[4,2])
+
 
 
 app.display()
